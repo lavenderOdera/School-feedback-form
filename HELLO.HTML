@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>School Feedback Form</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #f3f6fb;
+        margin: 0;
+    }
+
+    .header {
+        background: #1e3a8a;
+        color: white;
+        text-align: center;
+        padding: 25px 15px;
+    }
+     .header img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: white;
+        padding: 5px;
+        object-fit: contain;
+     }
+
+    .container {
+        max-width: 900px;
+        margin: 30px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h2 {
+        color: #1e3a8a;
+        border-left: 5px solid #f59e0b;
+        padding-left: 10px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background: #1e3a8a;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #f59e0b;
+        color: black;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <img src="Pefa Syokimau school.jpg" alt="pefa school">
+    <h1>PEFA SYOKIMAU SCHOOL</h1>
+    <p>Parents Feedback Form</p>
+</div>
+
+<div class="container">
+
+<form id="feedbackForm">
+
+<h2>Parent Information</h2>
+
+<label>Parent Name</label>
+<input type="text" name="parent_name" required>
+
+<label>Child Name</label>
+<input type="text" name="child_name">
+
+<label>Child Grade</label>
+<select name="child_grade">
+    <option>Playgroup</option>
+    <option>PP1</option>
+    <option>PP2</option>
+    <option>Grade 1</option>
+    <option>Grade 2</option>
+    <option>Grade 3</option>
+    <option>Grade 4</option>
+    <option>Grade 5</option>
+    <option>Grade 6</option>
+    <option>Grade 7</option>
+    <option>Grade 8</option>
+    <option>Grade 9</option>
+</select>
+
+<label>Duration</label>
+<select name="duration">
+    <option>Less than 1 year</option>
+    <option>1–2 years</option>
+    <option>3–5 years</option>
+</select>
+
+<h2>Teaching</h2>
+
+<label>Teaching (1–5)</label>
+<input type="number" name="teaching" min="1" max="5">
+
+<label>Teacher Communication (1–5)</label>
+<input type="number" name="teacher_comm" min="1" max="5">
+
+<label>Homework (1–5)</label>
+<input type="number" name="homework" min="1" max="5">
+
+<h2>Communication</h2>
+
+<label>Communication (1–5)</label>
+<input type="number" name="communication" min="1" max="5">
+
+<label>Info Sharing (1–5)</label>
+<input type="number" name="info_sharing" min="1" max="5">
+
+<label>Accessibility (1–5)</label>
+<input type="number" name="accessibility" min="1" max="5">
+
+<h2>Environment</h2>
+
+<label>Safety (1–5)</label>
+<input type="number" name="safety" min="1" max="5">
+
+<label>Cleanliness (1–5)</label>
+<input type="number" name="cleanliness" min="1" max="5">
+
+<label>Environment Comments</label>
+<textarea name="environment_comments"></textarea>
+
+<h2>Activities</h2>
+
+<label>Activities Feedback</label>
+<textarea name="activities"></textarea>
+
+<h2>Overall</h2>
+
+<label>Overall Rating (1–5)</label>
+<input type="number" name="overall" min="1" max="5">
+
+<label>Recommend School?</label>
+<select name="recommend">
+    <option>Yes</option>
+    <option>No</option>
+    <option>Maybe</option>
+</select>
+
+<label>Suggestions</label>
+<textarea name="suggestions"></textarea>
+
+<button type="submit">Submit Feedback</button>
+
+</form>
+
+</div>
+
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const formData = new URLSearchParams(new FormData(this));
+
+    fetch("https://script.google.com/macros/s/AKfycbwDshvwAju-Ju3huUhnnXSGzbCLtnsAiR1lR32lW4yor29VTbp8_bmY_ZcVkz26kuHp/exec", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(() => {
+        alert("Feedback submitted successfully!");
+        this.reset();
+    })
+    .catch(err => {
+        alert("Error submitting form");
+        console.error(err);
+    });
+});
+</script>
+
+</body>
+</html>
